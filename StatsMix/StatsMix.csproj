@@ -37,6 +37,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Stat.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Example.cs" />
   </ItemGroup>

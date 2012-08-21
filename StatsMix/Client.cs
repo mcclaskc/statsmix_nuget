@@ -7,10 +7,18 @@ namespace StatsMix
         public string ApiKey { get; set; }
         const string BASE_URL = "http://statsmix.com/api/v2";
 
-        public Client(string api_key)
+        public Client(string apiKey)
         {
-            ApiKey = api_key;
+            ApiKey = apiKey;
         }
 
+        public bool track(string metricName, Stat stat)
+        {
+            if(stat.Value == 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

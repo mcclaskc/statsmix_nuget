@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using StatsMix;
 
 namespace test
 {
@@ -11,10 +7,23 @@ namespace test
         const string YOUR_API_KEY = "abc123";
         static void Main(string[] args)
         {
-            Client smclient = new Client(YOUR_API_KEY);
-            string output = smclient.ApiKey;
-            System.Console.WriteLine("hello stats world, the api key is: " + output);
-            System.Console.ReadLine();
+            StatsMix.Client smClient = new StatsMix.Client(YOUR_API_KEY);
+            string output = smClient.ApiKey;
+            Console.WriteLine("hello stats world, the api key is: " + output);
+
+            StatsMix.Stat smStat = new StatsMix.Stat();
+            Console.WriteLine("Id: " + smStat.Id);
+            Console.WriteLine("Value: " + smStat.Value);
+            Console.WriteLine("Meta: " + smStat.Meta);
+            Console.WriteLine("RefId: " + smStat.RefId);
+            Console.WriteLine("ProfileId: " + smStat.ProfileId);
+            Console.WriteLine("MetricId: " + smStat.MetricId);
+            Console.WriteLine("GeneratedAt: " + smStat.GeneratedAt);
+            Console.WriteLine("CreatedAt: " + smStat.CreatedAt);
+            Console.WriteLine("UpdatedAt: " + smStat.UpdatedAt);
+            bool result = smClient.track("metric_name", smStat);
+            Console.WriteLine("and your stat result is: " + result);
+            Console.ReadLine();
         }
     }
 }
