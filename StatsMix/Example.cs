@@ -12,7 +12,8 @@ namespace test
             Console.WriteLine("hello stats world, the api key is: " + output);
 
             StatsMix.Stat smStat = new StatsMix.Stat();
-            Console.WriteLine("Id: " + smStat.Id);
+            smStat.RefId = "0xDEADBEEF";
+           /*Console.WriteLine("Id: " + smStat.Id);
             Console.WriteLine("Value: " + smStat.Value);
             Console.WriteLine("Meta: " + smStat.Meta);
             Console.WriteLine("RefId: " + smStat.RefId);
@@ -20,8 +21,8 @@ namespace test
             Console.WriteLine("MetricId: " + smStat.MetricId);
             Console.WriteLine("GeneratedAt: " + smStat.GeneratedAt);
             Console.WriteLine("CreatedAt: " + smStat.CreatedAt);
-            Console.WriteLine("UpdatedAt: " + smStat.UpdatedAt);
-            bool result = smClient.track("metric_name", smStat);
+            Console.WriteLine("UpdatedAt: " + smStat.UpdatedAt);*/
+            string result = smClient.track("metric_name", smStat);
             Console.WriteLine("and your stat result is: " + result);
             Console.ReadLine();
         }
