@@ -40,7 +40,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Response.cs" />
+    <Compile Include="ApiRequest.cs" />
+    <Compile Include="Metric.cs" />
+    <Compile Include="Object.cs" />
     <Compile Include="Stat.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Example.cs" />

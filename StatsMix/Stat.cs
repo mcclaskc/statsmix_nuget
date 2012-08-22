@@ -2,21 +2,23 @@
 
 namespace StatsMix
 {
-    class Stat
+    class Stat : Object
     {
-        public int Id { get; set; }
+        
         public int Value { get; set; }
         public string Meta { get; set; }
         public string RefId { get; set; }
-        public int ProfileId { get; set; }
         public int MetricId { get; set; }
         public DateTime GeneratedAt { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
 
         public Stat() 
         {
             Value = 1; 
+        }
+
+        public Stat(string xml)
+        {
+
         }
         
     }
