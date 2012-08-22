@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace StatsMix
 {
@@ -13,13 +14,7 @@ namespace StatsMix
 
         public Stat() 
         {
-            Value = 1; 
+            Scope = "stats";
         }
-
-        public Stat(string xml)
-        {
-
-        }
-        
     }
 }
