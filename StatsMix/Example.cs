@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using RestSharp;
 
 namespace test
@@ -14,23 +15,25 @@ namespace test
 
             StatsMix.Client smClient = new StatsMix.Client(YOUR_API_KEY);
 
-            //doing a track with just metric name
-            // smClient.track("metric_name")
-
-           /* // doing a track with metric name and a value
-            Console.WriteLine("Basic Tracking:");
-            string resp = smClient.track("metric_name", 5.2);
-            Console.WriteLine("response was: " + resp); */
-
-            // tracking with metric name and parameters
-            Console.WriteLine("Tracking with Parameters:");
+            Console.WriteLine("Tracking with Parameters and meta:");
             var parameters = new Hashtable();
             parameters["value"] = 5.1;
-            parameters["ref_id"] = "Test01";        
-            string resp = smClient.track("metric_name", parameters);
-            Console.WriteLine("response was: " + resp);
+            parameters["ref_id"] = "Test01";
+            var meta = new Dictionary<string, string>();
+            meta.Add("food", "icecream");
+            meta.Add("calories", "500");
+            
+            try
+            {
+                String resp = smClient.track("metric_name", parameters, meta);
+                Console.WriteLine("response was: " + resp);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("failed, response was: " + e.Message);
+            }            
+            
 
-            StatsMix.Stat smStat = new StatsMix.Stat();
 
             //waiting for any input to close the console
             Console.ReadLine();

@@ -5,16 +5,43 @@ namespace StatsMix
 {
     class Stat : Object
     {
-        
-        public int Value { get; set; }
-        public string Meta { get; set; }
-        public string RefId { get; set; }
-        public int MetricId { get; set; }
-        public DateTime GeneratedAt { get; set; }
+        public int id {get; set;}
+        public int profile_id { get; set; }
+        public int value { get; set; }
+        public string meta { get; set; }
+        public string ref_id { get; set; }
+        public int metric_id { get; set; }
+        public DateTime generated_at { get; set; }
 
         public Stat() 
         {
             Scope = "stats";
+        }
+
+        public Stat(Hashtable parameters)
+        {
+            foreach (string key in parameters)
+            {
+                switch (key)
+                {
+                    case "id":
+                        id = (int)parameters["id"];
+                        break;
+                    case "profile_id":
+                        //ProfileId = (int)parameters["profile_id"];
+                        break;
+                    case "value":
+                        break;
+                    case "meta":
+                        break;
+                    case "ref_id":
+                        break;
+                    case "metric_id":
+                        break;
+                    case "generated_at":
+                        break;
+                }
+            }
         }
     }
 }

@@ -8,10 +8,10 @@ namespace StatsMix
     abstract class Object
     {
         protected string Scope;
-        public int Id { get; set; }
-        public int ProfileId { get; set; }
-        private DateTime CreatedAt { get; set; }
-        private DateTime UpdatedAt { get; set; }
+        public int id { get; set; }
+        public int profile_id { get; set; }
+        private DateTime created_at { get; set; }
+        private DateTime updated_at { get; set; }
         
         public Object() { }
 

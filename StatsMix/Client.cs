@@ -1,25 +1,41 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using RestSharp;
+using Newtonsoft.Json;
+
 namespace StatsMix
 {
     class Client
     {
         public string ApiKey { get; private set; }
+        public bool ThrowApiErrors { get; set; }
         private RestClient restClient;
         private const string BaseUrl = "http://statsmix.com/api/v2";
 
-        public Client(string apiKey)
+        public Client(string apiKey, bool throwApiErrors = false)
         {
             ApiKey = apiKey;
+            ThrowApiErrors = throwApiErrors;
             restClient = new RestClient(BaseUrl);
             restClient.AddDefaultHeader("X-StatsMix-Token", apiKey);
+            
         }
        
+        public string track(string metricName, Hashtable parameters, Dictionary<string, string> meta)
+        {
+            string json = JsonConvert.SerializeObject(meta);
+            parameters["meta"] = json;
+            parameters["name"] = metricName;
+            string resp = request("track", parameters, Method.POST);
+            return resp;
+        }
+
         public string track(string metricName, Hashtable parameters)
         {
             parameters["name"] = metricName;
-            return request("track", parameters, Method.POST); 
+            string resp = request("track", parameters, Method.POST);
+            return resp;
         }
 
         public string track(string metricName, double value = 1.0)
@@ -29,66 +45,35 @@ namespace StatsMix
             parameters["value"] = value;
             return request("track", parameters, Method.POST);
         }
-        public string createStat(int metricId, Hashtable parameters)
-        {
-            parameters["metric_id"] = metricId;
-            return request("stats", parameters, Method.POST);
-        }
 
         private string request(string resource, Hashtable parameters, Method method)
         {
-            var request = new RestRequest(resource, method);
+            var req = new RestRequest(resource, method);
             foreach (string key in parameters.Keys)
             {
-                request.AddParameter(key, parameters[key]);
+                req.AddParameter(key, parameters[key]);
             }
-            return statusCheck(restClient.Execute(request));
+            IRestResponse resp = restClient.Execute(req);
+            if (ThrowApiErrors) statusCheck(resp); //will throw an exception if not 200
+            return resp.Content;
         }
 
-        private string statusCheck(IRestResponse resp)
-        {
-            System.Collections.Generic.IList<RestSharp.Parameter> headers = resp.Headers;
-            foreach (Parameter item in headers)
-            {
-                Console.WriteLine("header: " + item.Name);
-            }
-            
+        private void statusCheck(IRestResponse resp)
+        {   
             System.Collections.Generic.IEnumerator<RestSharp.Parameter> e = resp.Headers.GetEnumerator();
             while (e.MoveNext())
             {
                 if (e.Current.Name == "Status")
                 {
                     string status = (string)e.Current.Value;
-                    Console.WriteLine("enum: Status = " + status);
                     if (status != "200")
                     {
                         Exception exc = new Exception(status + ":   " + resp.Content);
                         exc.HelpLink = "http://www.statsmix.com/developers/documentation#metric-examples";
                         throw exc;
                     }
-                    return status; 
                 }
             }
-            return "shouldn't reach here";
-        }
-
-        private void error(string status)
-        {
-            Exception e = new Exception();
-            
-            throw e;
         }
     }
 }
-
-/* 
-        public int Id { get; set; }
-        public int Value { get; set; }
-        public string Meta { get; set; }
-        public string RefId { get; set; }
-        public int ProfileId { get; set; }
-        public int MetricId { get; set; }
-        public DateTime GeneratedAt { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
- */

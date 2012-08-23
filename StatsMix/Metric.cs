@@ -12,9 +12,9 @@ namespace StatsMix
         public bool IncludeInEmail { get; set; }
         public string Url { get; private set; }
 
-        public Metric(int id)
+        public Metric(int mid)
         {
-            Id = id;
+            id = mid;
             Url = "test";
         }
 
