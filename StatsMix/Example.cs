@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RestSharp;
 
 namespace test
 {
     class Example
     {
-        const string YOUR_API_KEY = "d114e70073327345a717";
-        //const string YOUR_API_KEY = "bad";
+        const string StatsMixApiKey = "your api key goes here";
         static void Main(string[] args)
         {
-            Console.WriteLine("hello stats world");
-
-            StatsMix.Client smClient = new StatsMix.Client(YOUR_API_KEY);
+            StatsMix.Client smClient = new StatsMix.Client(StatsMixApiKey);
 
             Console.WriteLine("Tracking with Parameters and meta:");
             var parameters = new Hashtable();

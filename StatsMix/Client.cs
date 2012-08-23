@@ -69,7 +69,7 @@ namespace StatsMix
                     if (status != "200")
                     {
                         Exception exc = new Exception(status + ":   " + resp.Content);
-                        exc.HelpLink = "http://www.statsmix.com/developers/documentation#metric-examples";
+                        exc.HelpLink = "http://www.statsmix.com/developers/documentation";
                         throw exc;
                     }
                 }
