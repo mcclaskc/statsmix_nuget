@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatsMix", "StatsMix\StatsMix.csproj", "{BB23E30B-1C85-4761-8F99-57E9B9C962DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetTester", "..\NugetTester\NugetTester\NugetTester.csproj", "{26BA9552-4DCC-4B8D-A5CE-093EF20731EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{BB23E30B-1C85-4761-8F99-57E9B9C962DA}.Debug|x86.Build.0 = Debug|x86
 		{BB23E30B-1C85-4761-8F99-57E9B9C962DA}.Release|x86.ActiveCfg = Release|x86
 		{BB23E30B-1C85-4761-8F99-57E9B9C962DA}.Release|x86.Build.0 = Release|x86
+		{26BA9552-4DCC-4B8D-A5CE-093EF20731EF}.Debug|x86.ActiveCfg = Debug|x86
+		{26BA9552-4DCC-4B8D-A5CE-093EF20731EF}.Debug|x86.Build.0 = Debug|x86
+		{26BA9552-4DCC-4B8D-A5CE-093EF20731EF}.Release|x86.ActiveCfg = Release|x86
+		{26BA9552-4DCC-4B8D-A5CE-093EF20731EF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

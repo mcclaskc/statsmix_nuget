@@ -6,12 +6,13 @@ using Newtonsoft.Json;
 
 namespace StatsMix
 {
-    class Client
+    public class Client
     {
         public string ApiKey { get; private set; }
         public bool ThrowApiErrors { get; set; }
         private RestClient restClient;
         private const string BaseUrl = "http://statsmix.com/api/v2";
+        private string p;
 
         public Client(string apiKey, bool throwApiErrors = false)
         {
