@@ -9,14 +9,12 @@ namespace StatsMix
     public class Client
     {
         public string ApiKey { get; private set; }
-        public bool ThrowApiErrors { get; set; }
         private RestClient restClient;
         private const string BaseUrl = "http://statsmix.com/api/v2";
 
-        public Client(string apiKey, bool throwApiErrors = false)
+        public Client(string apiKey)
         {
             ApiKey = apiKey;
-            ThrowApiErrors = throwApiErrors;
             restClient = new RestClient(BaseUrl);
             restClient.AddDefaultHeader("X-StatsMix-Token", apiKey);
             
@@ -54,26 +52,7 @@ namespace StatsMix
                 req.AddParameter(key, properties[key]);
             }
             IRestResponse resp = restClient.Execute(req);
-            if (ThrowApiErrors) statusCheck(resp); //will throw an exception if not 200
             return resp.Content;
-        }
-
-        private void statusCheck(IRestResponse resp)
-        {   
-            System.Collections.Generic.IEnumerator<RestSharp.Parameter> e = resp.Headers.GetEnumerator();
-            while (e.MoveNext())
-            {
-                if (e.Current.Name == "Status")
-                {
-                    string status = (string)e.Current.Value;
-                    if (status != "200")
-                    {
-                        Exception exc = new Exception(status + ":   " + resp.Content);
-                        exc.HelpLink = "http://www.statsmix.com/developers/documentation";
-                        throw exc;
-                    }
-                }
-            }
         }
     }
 }

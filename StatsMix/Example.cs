@@ -11,7 +11,7 @@ namespace Example
         {
     
             //Create a new StatsMix Client
-            StatsMix.Client smClient = new StatsMix.Client(StatsMixApiKey, true);
+            StatsMix.Client smClient = new StatsMix.Client(StatsMixApiKey);
 
             //Basic Tracking.  Adds a new stat with default value of 1 to the metric.
             smClient.track("metric_name");
