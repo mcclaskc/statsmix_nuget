@@ -2,72 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace test
+namespace Example
 {
     class Example
     {
-        const string StatsMixApiKey = "apikey";
-        private const bool ShouldDoTest = true;
+        const string StatsMixApiKey = "Your Api Key";
         static void Main()
         {
-            if (ShouldDoTest)
-            {
-                runTest();
-            }
-            else
-            {
-                StatsMix.Client smClient = new StatsMix.Client(StatsMixApiKey);
+    
+            //Create a new StatsMix Client
+            StatsMix.Client smClient = new StatsMix.Client(StatsMixApiKey, true);
 
-                Console.WriteLine("Tracking with Parameters and meta:");
-                var properties = new Dictionary<string, string>();
-                properties["value"] = "5.1";
-                properties["ref_id"] = "Test01";
-                var meta = new Dictionary<string, string>();
-                meta.Add("food", "icecream");
-                meta.Add("calories", "500");
+            //Basic Tracking.  Adds a new stat with default value of 1 to the metric.
+            smClient.track("metric_name");
 
-                try
-                {
-                    String resp = smClient.track("metric_name", properties, meta);
-                    Console.WriteLine("response was: " + resp);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("failed, response was: " + e.Message);
-                }
-            }
+            //Track with a value other than one
+            smClient.track("metric_name", 5);
 
-
-            //waiting for any input to close the console
-            Console.WriteLine("Done!");
-            Console.ReadLine();
-        }
-
-        private static void runTest()
-        {
-            StatsMix.Client client = new StatsMix.Client(StatsMixApiKey);
-            StatsMix.Client raiseClient = new StatsMix.Client(StatsMixApiKey, true);
-
-
+            //Track with additional properties
             var properties = new Dictionary<string, string>();
-            properties["value"] = "5.1";
-            properties["ref_id"] = "Test01";
+            properties.Add("value", "5.1"); //If you do not include value, it will default to 1
+            properties.Add("ref_id", "Test01");
+            properties.Add("generated_at", DateTime.Now.ToString());
+            smClient.track("metric_name", properties);
+
+            //Track with meta data
             var meta = new Dictionary<string, string>();
             meta.Add("food", "icecream");
             meta.Add("calories", "500");
+            smClient.track("metric_name", properties, meta);
 
-            var start = DateTime.Now;
-            client.track("metric_name");
-            client.track("metric_name", 2);
-            client.track("metric_name", properties);
-            client.track("metric_name", properties, meta);
-
-            try { raiseClient.track("metric_name"); } catch (Exception e) { Console.WriteLine(e.Message); }
-            try { raiseClient.track("metric_name", 2); } catch (Exception e) { Console.WriteLine(e.Message); }
-            try { raiseClient.track("metric_name", properties); } catch (Exception e) { Console.WriteLine(e.Message); }
-            try { raiseClient.track("metric_name", properties, meta); } catch (Exception e) { Console.WriteLine(e.Message); }
-            Console.WriteLine(DateTime.Now - start);
-
+            //Checking the response for failed requests
+            string response = smClient.track("metric_name");
+            if (response.Contains("error")) 
+            {
+                //handle
+            }
         }
     }
 }
