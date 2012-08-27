@@ -12,7 +12,6 @@ namespace StatsMix
         public bool ThrowApiErrors { get; set; }
         private RestClient restClient;
         private const string BaseUrl = "http://statsmix.com/api/v2";
-        private string p;
 
         public Client(string apiKey, bool throwApiErrors = false)
         {
@@ -22,37 +21,37 @@ namespace StatsMix
             restClient.AddDefaultHeader("X-StatsMix-Token", apiKey);
             
         }
-       
-        public string track(string metricName, Hashtable parameters, Dictionary<string, string> meta)
+
+        public string track(string metricName, Dictionary<string, string> properties, Dictionary<string, string> meta)
         {
             string json = JsonConvert.SerializeObject(meta);
-            parameters["meta"] = json;
-            parameters["name"] = metricName;
-            string resp = request("track", parameters, Method.POST);
+            properties["meta"] = json;
+            properties["name"] = metricName;
+            string resp = request("track", properties, Method.POST);
             return resp;
         }
 
-        public string track(string metricName, Hashtable parameters)
+        public string track(string metricName, Dictionary<string, string> properties)
         {
-            parameters["name"] = metricName;
-            string resp = request("track", parameters, Method.POST);
+            properties["name"] = metricName;
+            string resp = request("track", properties, Method.POST);
             return resp;
         }
 
         public string track(string metricName, double value = 1.0)
         {
-            var parameters = new Hashtable();
-            parameters["name"] = metricName;
-            parameters["value"] = value;
-            return request("track", parameters, Method.POST);
+            var properties = new Dictionary<string, string>();
+            properties["name"] = metricName;
+            properties["value"] = value.ToString();
+            return request("track", properties, Method.POST);
         }
 
-        private string request(string resource, Hashtable parameters, Method method)
+        private string request(string resource, Dictionary<string, string> properties, Method method)
         {
             var req = new RestRequest(resource, method);
-            foreach (string key in parameters.Keys)
+            foreach (string key in properties.Keys)
             {
-                req.AddParameter(key, parameters[key]);
+                req.AddParameter(key, properties[key]);
             }
             IRestResponse resp = restClient.Execute(req);
             if (ThrowApiErrors) statusCheck(resp); //will throw an exception if not 200
