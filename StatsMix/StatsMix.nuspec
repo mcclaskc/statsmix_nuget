@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>StatsMix</id>
+    <version>1.0.0</version>
+    <title>StatsMix</title>
+    <authors>Chris McClaskey</authors>
+    <owners>mcclaskc</owners>
+    <iconUrl>http://www.statsmix.com/statsmix_icon_black_64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>StatsMix API Client</description>
+    <releaseNotes>Initial Release.</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>stat-tracking statsmix api</tags>
+  </metadata>
+</package>
