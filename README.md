@@ -1,6 +1,6 @@
 [dl_nuget]: https://www.statsmix.com/download/java/statsmix.jar
 [dl_dep]: https://www.statsmix.com/download/java/statsmix-lib-dependencies.tar.gz
-[track_exmpl]: https://github.com/mcclaskc/statsmix_jar/blob/master/examples/Track.java
+[track_exmpl]: https://github.com/mcclaskc/statsmix_nuget/blob/master/StatsMix/Examples/Track.csa
 
 StatsMix
 ========
@@ -22,37 +22,28 @@ Client smClient = new Client("YOUR_API_KEY");
 The track method sends a request to the track API, and returns the XML response as a string. The following snippets were taken from [this example file.] [track_exmpl] 
 
 Basic Tracking.  Adds a new stat with default value of 1 to the metric.
-```java
+```c#
 smClient.track("Metric Name");
 ```
 
 Track with a value other than one
-```java
+```c#
 smClient.track("Metric Name", 5.2);
 ```
 
 Track with additional properties
-```java
-List<NameValuePair> properties = new ArrayList<NameValuePair>(2);
-properties.add(new BasicNameValuePair("value", "5.2"));  //if you do not include the value, it will default to 1
-properties.add(new BasicNameValuePair("ref_id", "java01"));
-properties.add(new BasicNameValuePair("generated_at", getDateTime()));
-smClient.track("Metric Name", properties);
+```c#
+var properties = new Dictionary<string, string>();
+properties.Add("value", "5.1"); //If you do not include value, it will default to 1
+properties.Add("ref_id", "Test01");
+properties.Add("generated_at", DateTime.Now.ToString());
+smClient.track("metric_name", properties);
 ```
 
 Track with meta data
-```java
-JSONObject meta = new JSONObject();
-meta.put("food", "icecream");
-meta.put("calories", 500);
-smClient.track("Metric Name", properties, meta);
-```
-
-A method for formating the date
-```java
-public String getDateTime() {
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    Date date = new Date();
-    return dateFormat.format(date);
-}
+```c#
+var meta = new Dictionary<string, string>();
+meta.Add("food", "icecream");
+meta.Add("calories", "500");
+smClient.track("metric_name", properties, meta);
 ```
