@@ -13,8 +13,9 @@ Usage
 ------
 ###Initialize
 Create a new StatsMix Client
-```java
-import com.statsmix.*
+```c#
+using StatsMix;
+...
 Client smClient = new Client("YOUR_API_KEY");
 ```
 ###Track
