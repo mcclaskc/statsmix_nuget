@@ -15,6 +15,7 @@ StatsMix makes it easy to track, chart, and share application and business metri
 * Create and share custom dashboards that aggregate multiple metrics together
   * Example dashboard: http://www.statsmix.com/d/0e788d59208900e7e3bc
   * Example embedded dashboard: http://www.statsmix.com/example-embedded
+
 To get started, you'll need an API key for StatsMix. You can get a free developer account here: http://www.statsmix.com/try?plan=developer
 
 Full gem documentation is at http://www.statsmix.com/developers/csharp_nuget
