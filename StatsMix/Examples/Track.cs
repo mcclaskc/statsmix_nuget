@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using StatsMix;
 
-namespace Example
+namespace StatsMix.Example
 {
-    class Example
+    class Track
     {
         const string StatsMixApiKey = "Your Api Key";
         static void Main()
