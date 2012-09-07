@@ -10,7 +10,7 @@ namespace StatsMix
     {
         public string ApiKey { get; private set; }
         private RestClient restClient;
-        private const string BaseUrl = "http://statsmix.com/api/v2";
+        private const string BaseUrl = "http://api.wwstatsmix.com/api/v2";
 
         public Client(string apiKey)
         {
