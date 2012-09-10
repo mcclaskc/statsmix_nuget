@@ -1,6 +1,6 @@
 [dl_nuget]: https://www.statsmix.com/download/java/statsmix.jar
 [dl_dep]: https://www.statsmix.com/download/java/statsmix-lib-dependencies.tar.gz
-[track_exmpl]: https://github.com/mcclaskc/statsmix_nuget/blob/master/StatsMix/Examples/Track.csa
+[track_exmpl]: https://github.com/mcclaskc/statsmix_nuget/blob/master/StatsMix/Examples/Track.cs
 
 StatsMix
 ========
