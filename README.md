@@ -18,7 +18,7 @@ StatsMix makes it easy to track, chart, and share application and business metri
 
 To get started, you'll need an API key for StatsMix. You can get a free developer account here: http://www.statsmix.com/try?plan=developer
 
-Full gem documentation is at http://www.statsmix.com/developers/csharp_nuget
+Full documentation is at http://www.statsmix.com/developers/csharp_nuget
 
 Download and Install
 --------------------
