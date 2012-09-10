@@ -34,7 +34,7 @@ using StatsMix;
 Client smClient = new Client("YOUR_API_KEY");
 ```
 ###Track
-The track method sends a request to the track API, and returns the XML response as a string. The following snippets were taken from [this example file.] [track_exmpl] 
+The track method sends a request to the track API, and returns the response as a string. The following snippets were taken from [this example file.] [track_exmpl] 
 
 Basic Tracking.  Adds a new stat with default value of 1 to the metric.
 ```c#
