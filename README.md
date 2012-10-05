@@ -1,6 +1,5 @@
-[dl_nuget]: https://www.statsmix.com/download/java/statsmix.jar
-[dl_dep]: https://www.statsmix.com/download/java/statsmix-lib-dependencies.tar.gz
-[track_exmpl]: https://github.com/mcclaskc/statsmix_nuget/blob/master/StatsMix/Examples/Track.csa
+[dl_nuget]: http://nuget.org/packages/StatsMix
+[track_exmpl]: https://github.com/mcclaskc/statsmix_nuget/blob/master/StatsMix/Examples/Track.cs
 
 StatsMix
 ========
@@ -18,7 +17,7 @@ StatsMix makes it easy to track, chart, and share application and business metri
 
 To get started, you'll need an API key for StatsMix. You can get a free developer account here: http://www.statsmix.com/try?plan=developer
 
-Full gem documentation is at http://www.statsmix.com/developers/csharp_nuget
+Full documentation is at http://www.statsmix.com/developers/csharp_nuget
 
 Download and Install
 --------------------
@@ -34,7 +33,7 @@ using StatsMix;
 Client smClient = new Client("YOUR_API_KEY");
 ```
 ###Track
-The track method sends a request to the track API, and returns the XML response as a string. The following snippets were taken from [this example file.] [track_exmpl] 
+The track method sends a request to the track API, and returns the response as a string. The following snippets were taken from [this example file.] [track_exmpl] 
 
 Basic Tracking.  Adds a new stat with default value of 1 to the metric.
 ```c#
