@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo1.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Example.cs" />
+    <Compile Include="Examples\Track.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
